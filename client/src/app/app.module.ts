@@ -5,10 +5,12 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
