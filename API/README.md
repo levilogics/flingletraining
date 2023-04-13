@@ -34,4 +34,5 @@ dotnet ef database update
 
 ```
 ng g interceptor error --skip-tests
+ng serve --disable-host-check
 ```

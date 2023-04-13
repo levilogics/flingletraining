@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +29,5 @@ namespace API.Controllers
         {
             return await _context.Users.FindAsync(id);
         }
-
     }
 }
