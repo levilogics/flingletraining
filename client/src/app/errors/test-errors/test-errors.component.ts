@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./test-errors.component.css']
 })
 export class TestErrorsComponent {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = 'https://api-flingletraining:5001/api/';
   validationErrors: string[] = [];
 
   constructor(private http: HttpClient) {
