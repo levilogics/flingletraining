@@ -14,6 +14,9 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import {MemberListComponent} from "./members/member-list/member-list.component";
 import {MemberDetailComponent} from "./members/member-detail/member-detail.component";
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {MemberDetailComponent} from "./members/member-detail/member-detail.compo
     ListsComponent,
     MessagesComponent,
     MemberListComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
+    TestErrorsComponent
   ],
   imports: [
     BrowserModule,
