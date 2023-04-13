@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router, NavigationExtras } from '@angular/router';
@@ -15,10 +15,11 @@ export class ErrorInterceptor implements HttpInterceptor {
   EEE = [];
   constructor(private router: Router, private toastr: ToastrService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError(err => {
+      catchError((err: HttpErrorResponse) => {
         this.EEE = err.error.errors;
+        console.log("[error]", err);
         if (err) {
           switch (err.status) {
             case 400:
@@ -31,11 +32,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error(err.statusText, err.status);
+                this.toastr.error(err.statusText, err.status.toString());
               }
               break;
             case 401:
-              this.toastr.error(err.statusText, err.status);
+              this.toastr.error(err.statusText, err.status.toString());
               break;
             case 404:
               this.router.navigateByUrl('/not-found');
@@ -46,7 +47,6 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             default:
               this.toastr.error('Something unexpected went wrong');
-              console.log(err);
               break;
           }
         }
@@ -54,5 +54,4 @@ export class ErrorInterceptor implements HttpInterceptor {
       })
     )
   }
-
 }

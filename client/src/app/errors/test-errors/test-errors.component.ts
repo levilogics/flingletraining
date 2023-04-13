@@ -10,8 +10,7 @@ export class TestErrorsComponent {
   baseUrl = 'https://api-flingletraining:5001/api/';
   validationErrors: string[] = [];
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   get404Error() {
     this.http.get(this.baseUrl + 'buggy/not-found').subscribe(response => {
@@ -23,7 +22,7 @@ export class TestErrorsComponent {
 
   get400Error() {
     this.http.get(this.baseUrl + 'buggy/bad-request').subscribe(response => {
-      console.log(response);
+      console.log("[400 error]", response);
     }, error => {
       console.log(error);
     })
