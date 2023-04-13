@@ -8,8 +8,8 @@ import {ReplaySubject} from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'https://api-flingletraining.test:5001/api/';
   private currentUserSource = new ReplaySubject<User>(1);
+  baseUrl = 'https://api-flingletraining.test:5001/api/';
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) {
