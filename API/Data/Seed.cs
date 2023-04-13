@@ -22,6 +22,6 @@ public class Seed
             context.Users.Add(user);
         }
 
-        context.SaveChangesAsync();
+        context.SaveChanges();
     }
 }
