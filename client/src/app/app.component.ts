@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   title = 'Flingle';
   users: any;
 
-  constructor(private accountService: AccountService, private http: HttpClient) {}
+  constructor(private accountService: AccountService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.getUsers();
