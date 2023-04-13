@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using API.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 namespace API
 {
@@ -60,6 +61,16 @@ namespace API
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.UseStaticFiles(); // add this line if it's not already there
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")
+                ),
+                RequestPath = "/favicon.ico"
+            });
+
         }
     }
 }
