@@ -36,7 +36,7 @@ namespace API
                 {
                     builder.AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithOrigins("https://flingletraining.test:4200");
+                        .WithOrigins("https://flingletraining.test");
                 });
             });
 
@@ -50,8 +50,8 @@ namespace API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseMiddleware<ExceptionMiddleware>();
             app.UseCors("CorsPolicy");
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
