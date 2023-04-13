@@ -123,10 +123,10 @@
     "ora" "5.4.1"
     "rxjs" "6.6.7"
 
-"@angular/animations@^14.2.0":
-  "integrity" "sha512-QoBcIKy1ZiU+4qJsAh5Ls20BupWiXiZzKb0s6L9/dntPt5Msr4Ao289XR2P6O1L+kTsCprH9Kt41zyGQ/bkRqg=="
-  "resolved" "https://registry.npmjs.org/@angular/animations/-/animations-14.3.0.tgz"
-  "version" "14.3.0"
+"@angular/animations@^15.2.7":
+  "integrity" "sha512-Vmy0AljHc/GOp87O2x0mxUDiyfJFW8ndDE9Xrm/g0rnLnNWsaLtLXr1TWbwF7eTqKA3k/QcUvYAjLMWKvjyKgQ=="
+  "resolved" "https://registry.npmjs.org/@angular/animations/-/animations-15.2.7.tgz"
+  "version" "15.2.7"
   dependencies:
     "tslib" "^2.3.0"
 
