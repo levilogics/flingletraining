@@ -18,6 +18,7 @@ export class MemberListComponent {
 
   loadMembers() {
     this.memberService.getMembers().subscribe(members => {
+      console.log(members);
       this.members = members;
     })
   }
