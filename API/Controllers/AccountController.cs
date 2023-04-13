@@ -19,7 +19,7 @@ namespace API.Controllers
             _tokenService = tokenService;
             _context = context;
         }
-        
+
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
@@ -59,7 +59,7 @@ namespace API.Controllers
             {
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
-            
+
             return new UserDto
             {
                 Username = user.UserName,

@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         this.EEE = err.error.errors;
-        console.log("[error]", err);
         if (err) {
           switch (err.status) {
             case 400:
