@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { delay, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
