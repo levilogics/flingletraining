@@ -25,10 +25,9 @@ namespace API.Controllers
 
 
         [HttpGet("{username}", Name = "GetUser")]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            var users = await _userRepository.GetMembersAsync();
-            return Ok(users);
+            return await _unitOfWork.UserRepository.GetMemberAsync(username);
         }
 
         [HttpPut]
@@ -46,9 +45,7 @@ namespace API.Controllers
         {
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
             var result = await _photoService.AddPhotoAsync(file);
-
             if (result.Error != null) return BadRequest(result.Error.Message);
-
             var photo = new Photo
             {
                 Url = result.SecureUrl.AbsoluteUri,
@@ -68,6 +65,7 @@ namespace API.Controllers
 
             return BadRequest("Problem adding photo");
         }
+
 
         [HttpPut("set-main-photo/{photoId}")]
         public async Task<ActionResult> SetMainPhoto(int photoId)
@@ -98,6 +96,7 @@ namespace API.Controllers
 
             user.Photos.Remove(photo);
             if (await _userRepository.SaveAllAsync()) return Ok();
+
             return BadRequest("Failed to delete the photo");
         }
     } // UsersController
