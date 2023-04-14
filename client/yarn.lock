@@ -123,6 +123,15 @@
   dependencies:
     "tslib" "^2.3.0"
 
+"@angular/cdk@^15.2.7":
+  "integrity" "sha512-IQg/EuZ3LC/vOHZtcLvkM+FSACXW5PVv2NddJgsBOtfcf1HcTk97VhegtB4WGQTUe1pcxiLGz/aWYuIRknjitw=="
+  "resolved" "https://registry.npmjs.org/@angular/cdk/-/cdk-15.2.7.tgz"
+  "version" "15.2.7"
+  dependencies:
+    "tslib" "^2.3.0"
+  optionalDependencies:
+    "parse5" "^7.1.2"
+
 "@angular/cli@~15.2.6":
   "integrity" "sha512-wNkQ/qCVbd4pERaGVagKJPifEvjRNY5otwsd4iRVubY/XOcIHcYChUThZwgQdVfNAImfJPMZNrhbGxejuWLA9w=="
   "resolved" "https://registry.npmjs.org/@angular/cli/-/cli-15.2.6.tgz"
@@ -147,7 +156,7 @@
     "symbol-observable" "4.0.0"
     "yargs" "17.6.2"
 
-"@angular/common@^15.0.0", "@angular/common@^15.2.7", "@angular/common@>=14.0.0-0", "@angular/common@15.2.7":
+"@angular/common@^15.0.0", "@angular/common@^15.0.0 || ^16.0.0", "@angular/common@^15.2.7", "@angular/common@>=14.0.0-0", "@angular/common@15.2.7":
   "integrity" "sha512-CbmrQeZ0yChQrF/ab3v+gv6x2uLbv/s1wZNUBSO/p1STz6BZzHRJqObVlfPlQvyBx5btBBy/+I1sUh1yumARDA=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-15.2.7.tgz"
   "version" "15.2.7"
@@ -177,7 +186,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^15.0.0", "@angular/core@^15.2.7", "@angular/core@>=14.0.0-0", "@angular/core@15.2.7":
+"@angular/core@^15.0.0", "@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.2.7", "@angular/core@>=14.0.0-0", "@angular/core@15.2.7":
   "integrity" "sha512-iS7JCJubRFqdndoUdAnvNkQRT3tY5tNFupBQS/sytkwxVrdBg+Is5jpdgk741n824vTMsE+CnuY0SETar8rN6g=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-15.2.7.tgz"
   "version" "15.2.7"
@@ -4345,6 +4354,13 @@
   dependencies:
     "tslib" "^2.3.0"
 
+"ngx-spinner@^15.0.1":
+  "integrity" "sha512-7DjETmBpuXTwI68ad1xMKpwt4Cyz1eyu8E7AJcFiKa+8JAnbo0k1qfvWur0aemncRNxDxHoyl6jw42MsnE/B+g=="
+  "resolved" "https://registry.npmjs.org/ngx-spinner/-/ngx-spinner-15.0.1.tgz"
+  "version" "15.0.1"
+  dependencies:
+    "tslib" "^2.3.0"
+
 "ngx-toastr@^16.1.0":
   "integrity" "sha512-jMnkauggRE8264vR4NtOgK3QI7zmufO3Z7wrkg3j7A7ZVpkCKDXgklsAZM9aiHxDyttM2K+Na6a6L004uPeRKA=="
   "resolved" "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-16.1.0.tgz"
@@ -4702,6 +4718,13 @@
   "version" "6.0.1"
 
 "parse5@^7.0.0":
+  "integrity" "sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw=="
+  "resolved" "https://registry.npmjs.org/parse5/-/parse5-7.1.2.tgz"
+  "version" "7.1.2"
+  dependencies:
+    "entities" "^4.4.0"
+
+"parse5@^7.1.2":
   "integrity" "sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw=="
   "resolved" "https://registry.npmjs.org/parse5/-/parse5-7.1.2.tgz"
   "version" "7.1.2"

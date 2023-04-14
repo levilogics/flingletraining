@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -21,6 +21,8 @@ import {ErrorInterceptor} from './_interceptors/error.interceptor';
 import {MemberCardComponent} from './members/member-card/member-card.component';
 import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,16 +44,19 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
+    FormsModule,
     SharedModule,
+    BsDropdownModule.forRoot(),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
