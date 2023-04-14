@@ -3,3 +3,4 @@ export interface Photo {
   url: any
   isMain: boolean
 }
+
