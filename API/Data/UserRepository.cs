@@ -32,7 +32,7 @@ public class UserRepository : IUserRepository
     {
         return await _context.Users
             .Include(p => p.Photos)
-            .ToListAsync(); 
+            .ToListAsync();
     }
 
     public async Task<AppUser> GetUserByIdAsync(int id)
@@ -42,7 +42,9 @@ public class UserRepository : IUserRepository
 
     public async Task<AppUser> GetUserByUsernameAsync(string username)
     {
-        return await _context.Users.SingleOrDefaultAsync(x => x.UserName == username);
+        return await _context.Users
+            .Include(p => p.Photos)
+            .SingleOrDefaultAsync(x => x.UserName == username);
     }
 
     public async Task<IEnumerable<MemberDto>> GetMembersAsync()
