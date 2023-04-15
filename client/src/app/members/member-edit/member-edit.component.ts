@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, HostListener} from '@angular/core';
+import {Component, ViewChild, HostListener} from '@angular/core';
 import {Member} from 'src/app/_models/member';
 import {User} from 'src/app/_models/user';
 import {AccountService} from 'src/app/_services/account.service';
@@ -14,6 +14,7 @@ import {NgForm} from '@angular/forms';
 })
 export class MemberEditComponent {
   @ViewChild('editForm') editForm: NgForm;
+
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
     if (this.editForm.dirty) {
       $event.returnValue = true;

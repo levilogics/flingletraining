@@ -23,14 +23,18 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    // subscribe to changes in the form control value
     this.control.valueChanges.subscribe((value) => {
       this.onChange(value);
     });
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = (args) => {
+
+  };
+
+  onTouched: any = (args) => {
+
+  };
 
   writeValue(value: any) {
     this.control.setValue(value);

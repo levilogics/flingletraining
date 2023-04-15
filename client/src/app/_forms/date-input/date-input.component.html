@@ -1,1 +1,18 @@
-<p>date-input works!</p>
+<div class="form-group">
+  <input
+    type="text"
+    class='form-control'
+    placeholder="{{label}}"
+    bsDatepicker
+    [class.is-invalid]='ngControl.touched && ngControl.invalid'
+    [formControl]='control'
+    [bsConfig]='bsConfig'
+    [maxDate]='maxDate'
+  />
+  <div
+    *ngIf="ngControl.control.errors?.required"
+    class="invalid-feedback"
+  >
+    {{label}} is required
+  </div>
+</div>
