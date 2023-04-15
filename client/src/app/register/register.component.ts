@@ -53,24 +53,44 @@ export class RegisterComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
-      ],
-      confirmPassword: [
-        '',
-        [Validators.required, this.matchValues('password')],
-      ],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)],],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')],],
     });
   }
 
+  get gender() {
+    return this.reactiveForm.get('gender');
+  }
+
+  get username() {
+    return this.reactiveForm.get('username');
+  }
+
+  get knownAs() {
+    return this.reactiveForm.get('knownAs');
+  }
+
+  get dateOfBirth() {
+    return this.reactiveForm.get('dateOfBirth');
+  }
+
+  get country() {
+    return this.reactiveForm.get('country');
+  }
+
+  get password() {
+    return this.reactiveForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.reactiveForm.get('confirmPassword');
+  }
 
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control?.value === control?.parent?.controls[matchTo].value
         ? null
-        : { isMatching: true };
+        : {isMatching: true};
     };
   }
-
 }
