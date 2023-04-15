@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {AccountService} from "../_services/account.service";
-import {Router} from '@angular/router';
-import {ToastrService} from "ngx-toastr";
+import { ToastrService  } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,47 +15,37 @@ export class RegisterComponent implements OnInit {
   maxDate: Date;
   validationErrors: string[] = [];
 
-  get gender() {
-    return this.registerForm.get('gender');
-  }
-
-  get username() {
-    return this.registerForm.get('username');
-  }
-
-  get knownAs() {
-    return this.registerForm.get('knownAs');
-  }
-
-  get dateOfBirth() {
-    return this.registerForm.get('dateOfBirth');
-  }
-
-  get country() {
-    return this.registerForm.get('country');
-  }
-
-  get password() {
-    return this.registerForm.get('password');
-  }
-
-  get confirmPassword() {
-    return this.registerForm.get('confirmPassword');
-  }
-
   constructor(
     private accountService: AccountService,
     private toastr: ToastrService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.registerForm = new FormGroup({});
+    private fb: FormBuilder, private router: Router
+  ) { }
+
+  initializeForm() {
+    this.registerForm = this.fb.group({
+      gender: ['male'],
+      username: ['', Validators.required],
+      knownAs: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
+      ],
+      confirmPassword: [
+        '',
+        [Validators.required, this.matchValues('password')],
+      ],
+    });
   }
 
-  ngOnInit(): void {
-    this.initializeForm();
-    this.maxDate = new Date();
-    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) => {
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null
+        : {isMatching: true};
+    };
   }
 
   register() {
@@ -69,29 +59,14 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.initializeForm();
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
 
   cancel() {
-    this.cancelRegister.emit(false);
+
   }
 
-  initializeForm() {
-    this.registerForm = this.fb.group({
-      gender: ['male'],
-      username: ['', Validators.required],
-      knownAs: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)],],
-      confirmPassword: ['', [Validators.required, this.matchValues('password')],],
-    });
-  }
-
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo].value
-        ? null
-        : {isMatching: true};
-    };
-  }
 }

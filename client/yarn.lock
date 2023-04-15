@@ -4468,7 +4468,7 @@ ng2-file-upload@^3.0.0:
 
 ngx-bootstrap@^10.2.0:
   version "10.2.0"
-  resolved "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-10.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-10.2.0.tgz#5ae8b0a3b3f0bec2f0229556f059be57dd602871"
   integrity sha512-bn5wdvH6QQ2JGu4TgUbozdULBFMxZNPNTgO7dRiosx9FRrFvKcgxkGSgU/xoj+4kP1vgh8zwzaiDfvH/Bfb+Aw==
   dependencies:
     tslib "^2.3.0"

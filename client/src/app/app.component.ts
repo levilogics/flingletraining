@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AccountService} from "./_services/account.service";
 import {User} from "./_models/user";
+import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   users: any;
 
   constructor(private accountService: AccountService, private http: HttpClient) {
+    setTheme('bs5'); // or 'bs4'
   }
 
   ngOnInit(): void {
