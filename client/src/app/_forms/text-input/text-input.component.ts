@@ -16,7 +16,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from '@
 export class TextInputComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
   @Input() type = 'text';
-  control: FormControl = new FormControl();
+  control: FormControl | any = new FormControl();
 
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
