@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {AccountService} from "../_services/account.service";
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 
@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router
   ) {
+    this.registerForm = new FormGroup({});
   }
 
   ngOnInit(): void {
