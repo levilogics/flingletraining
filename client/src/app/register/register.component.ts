@@ -11,7 +11,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
-  registerForm: FormGroup | any;
+  registerForm: FormGroup;
   maxDate: Date;
   validationErrors: string[] = [];
 
