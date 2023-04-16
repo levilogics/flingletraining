@@ -18,18 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers();
     this.setCurrentUser();
-  }
-
-  getUsers() {
-    this.http.get('https://api-flingletraining.test:5001/api/users').subscribe(response => {
-      this.users = response;
-      console.log(response);
-    }, error => {
-      console.log(error);
-    })
-    ///
   }
 
   setCurrentUser() {
