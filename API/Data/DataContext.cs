@@ -18,6 +18,8 @@ namespace API.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             //
             // User Role
             //
@@ -36,7 +38,6 @@ namespace API.Data
             //
             // UserLike
             //
-            base.OnModelCreating(builder);
             builder.Entity<UserLike>()
                 .HasKey(k => new { k.SourceUserId, k.LikedUserId });
             builder.Entity<UserLike>()
