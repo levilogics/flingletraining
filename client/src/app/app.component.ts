@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   users: any;
 
   constructor(private accountService: AccountService, private http: HttpClient) {
-    setTheme('bs5'); // or 'bs4'
+    // setTheme('bs5'); // or 'bs4'
   }
 
   ngOnInit(): void {

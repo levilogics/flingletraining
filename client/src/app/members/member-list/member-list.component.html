@@ -2,26 +2,40 @@
   <h2>Your matches - {{pagination?.totalItems}} found</h2>
 </div>
 <div class="container mt-3">
-  <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
-    <div class="form-group">
-      <label>Age from: </label>
-      <input type="number" class="form-control ml-1" style="width: 70px;" name="minAge" [(ngModel)]="userParams.minAge">
+  <form #form="ngForm" class="row gy-2 gx-3 align-items-center mb-4" (ngSubmit)="loadMembers()" autocomplete="off">
+    <div class="col-auto">
+      <div class="row">
+        <label class="col-auto col-form-label">Age from</label>
+        <div class="col-auto">
+          <input type="number" class="form-control ml-1" style="width: 70px;" name="minAge" [(ngModel)]="userParams.minAge">
+        </div>
+      </div>
     </div>
-    <div class="form-group px-2">
-      <label>Age to: </label>
-      <input type="number" class="form-control ml-1" style="width: 70px;" name="maxAge" [(ngModel)]="userParams.maxAge">
+    <div class="col-auto">
+      <div class="row">
+        <label class="col-auto col-form-label">Age to</label>
+        <div class="col-auto">
+          <input type="number" class="form-control ml-1" style="width: 70px;" name="maxAge" [(ngModel)]="userParams.maxAge">
+        </div>
+      </div>
     </div>
-    <div class="form-group px-2">
-      <label>Show: </label>
-      <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" class="form-control ml-1">
-        <option *ngFor="let gender of genderList" [value]="gender.value">
-          {{gender.display}}
-        </option>
-      </select>
+    <div class="col-auto">
+      <div class="row">
+        <label class="col-sm-3 col-md-3 col-form-label col-form-label-sm">Show</label>
+        <div class="col-sm-9 col-md-9">
+          <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" class="form-control ml-1">
+            <option *ngFor="let gender of genderList" [value]="gender.value">
+              {{gender.display}}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
-    <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
-    <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
-    <div class="col">
+    <div class="col-auto">
+      <button style="margin-right: 8px!important;" class="btn btn-primary mr-2" type="submit">Apply Filters</button>
+      <button (click)="resetFilters()" class="btn btn-info ml-3" type="submit">Reset Filters</button>
+    </div>
+    <div class="col-auto">
       <div class="btn-group float-right">
         <button
           type="button"
