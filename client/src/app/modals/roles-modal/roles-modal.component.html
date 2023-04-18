@@ -16,8 +16,8 @@
         (change)="role.checked = !role.checked"
         class="form-check-input"
         [checked]="role.checked"
-        type="checkbox"
         value="role.name"
+        type="checkbox"
         [disabled]="role.name === 'Admin' && user.username === 'admin'"
       />
       <label>{{ role.name }}</label>

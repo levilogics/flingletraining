@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api-flingletraining.test:5001/api/',
-  hubUrl: 'https://api-flingletraining.test:5001/hubs/',
+  apiUrl: 'https://localhost:5001/api/',
+  hubUrl: 'https://localhost:5001/hubs/',
 };
 
 /*

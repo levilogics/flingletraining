@@ -86,24 +86,24 @@
         </div>
       </div>
       <button
-        class="btn btn-success btn-s"
         type="button"
+        class="btn btn-success btn-s"
         (click)="uploader.uploadAll()"
         [disabled]="!uploader.getNotUploadedItems().length"
       >
         <span class="fa fa-upload"></span> Upload all
       </button>
       <button
-        class="btn btn-warning btn-s"
         type="button"
+        class="btn btn-warning btn-s"
         (click)="uploader.cancelAll()"
         [disabled]="!uploader.isUploading"
       >
         <span class="fa fa-ban"></span> Cancel all
       </button>
       <button
-        class="btn btn-danger btn-s"
         type="button"
+        class="btn btn-danger btn-s"
         (click)="uploader.clearQueue()"
         [disabled]="!uploader.queue.length"
       >
