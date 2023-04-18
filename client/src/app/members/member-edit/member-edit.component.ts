@@ -1,4 +1,4 @@
-import {Component, ViewChild, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Member} from 'src/app/_models/member';
 import {User} from 'src/app/_models/user';
 import {AccountService} from 'src/app/_services/account.service';
@@ -12,8 +12,10 @@ import {NgForm} from '@angular/forms';
   templateUrl: './member-edit.component.html',
   styleUrls: ['./member-edit.component.css']
 })
-export class MemberEditComponent {
+export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
+  member: Member;
+  user: User;
 
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -21,19 +23,13 @@ export class MemberEditComponent {
     }
   }
 
-  member: Member;
-  user: User;
+  constructor(private accountService: AccountService, private memberService: MembersService,
+              private toastr: ToastrService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.loadMember();
-  }
-
-  constructor(
-    private accountService: AccountService,
-    private memberService: MembersService,
-    private toastr: ToastrService
-  ) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   loadMember() {
@@ -48,4 +44,5 @@ export class MemberEditComponent {
       this.editForm.reset(this.member);
     })
   }
+
 }

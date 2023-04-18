@@ -1,41 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Member } from 'src/app/_models/member';
-import { MembersService } from 'src/app/_services/members.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
-import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Message } from 'src/app/_models/message';
-import { MessageService } from 'src/app/_services/message.service';
+import {Member} from 'src/app/_models/member';
+import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions,} from '@kolkov/ngx-gallery';
+import {TabDirective, TabsetComponent} from 'ngx-bootstrap/tabs';
+import {Message} from 'src/app/_models/message';
+import {MessageService} from 'src/app/_services/message.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PresenceService} from 'src/app/_services/presence.service';
+import {AccountService} from 'src/app/_services/account.service';
+import {User} from 'src/app/_models/user';
+import {take} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  styleUrls: ['./member-detail.component.css'],
 })
-export class MemberDetailComponent {
+export class MemberDetailComponent implements OnInit, OnDestroy {
   @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
   member: Member;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   activeTab: TabDirective;
   messages: Message[] = [];
+  user: User;
 
   constructor(
-    private memberService: MembersService,
+    public presence: PresenceService,
     private route: ActivatedRoute,
-    private messageService: MessageService
-  ) {}
-
-  getImages(): NgxGalleryImage[] {
-    const imageUrls = [];
-    for (const photo of this.member.photos) {
-      imageUrls.push({
-        small: photo?.url,
-        medium: photo?.url,
-        big: photo?.url
-      })
-    }
-    return imageUrls;
+    private messageService: MessageService,
+    private accountService: AccountService,
+    private router: Router
+  ) {
+    this.accountService.currentUser$
+      .pipe(take(1))
+      .subscribe((user) => (this.user = user));
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
@@ -61,6 +60,22 @@ export class MemberDetailComponent {
     this.galleryImages = this.getImages();
   }
 
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
+  }
+
+  getImages(): NgxGalleryImage[] {
+    const imageUrls = [];
+    for (const photo of this.member.photos) {
+      imageUrls.push({
+        small: photo?.url,
+        medium: photo?.url,
+        big: photo?.url,
+      });
+    }
+    return imageUrls;
+  }
+
   loadMessages() {
     this.messageService
       .getMessageThread(this.member.username)
@@ -76,7 +91,9 @@ export class MemberDetailComponent {
   onTabActivated(data: TabDirective) {
     this.activeTab = data;
     if (this.activeTab.heading === 'Messages' && this.messages.length === 0) {
-      this.loadMessages();
+      this.messageService.createHubConnection(this.user, this.member.username);
+    } else {
+      this.messageService.stopHubConnection();
     }
   }
 }

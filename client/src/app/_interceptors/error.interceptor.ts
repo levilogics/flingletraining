@@ -1,24 +1,21 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor, HttpErrorResponse
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Router, NavigationExtras } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { catchError } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {NavigationExtras, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  EEE = [];
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(private router: Router, private toastr: ToastrService) {
+  }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        this.EEE = error.error.errors;
+      catchError((error) => {
         if (error) {
           switch (error.status) {
             case 400:
@@ -26,33 +23,36 @@ export class ErrorInterceptor implements HttpInterceptor {
                 const modalStateErrors = [];
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
-                    modalStateErrors.push(error.error.errors[key])
+                    modalStateErrors.push(error.error.errors[key]);
                   }
                 }
                 throw modalStateErrors.flat();
-              } else if (typeof(error.error) === 'object') {
-                this.toastr.error(error.statusText, error.status.toString());
+              } else if (typeof error.error === 'object') {
+                this.toastr.error(error.statusText, error.status);
               } else {
-                this.toastr.error(error.error, error.status.toString());
+                this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
-              this.toastr.error(error.statusText, error.status.toString());
+              this.toastr.error(error.statusText, error.status);
               break;
             case 404:
               this.router.navigateByUrl('/not-found');
               break;
             case 500:
-              const navigationExtras: NavigationExtras = {state: {error: error.error}}
+              const navigationExtras: NavigationExtras = {
+                state: {error: error.error},
+              };
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
               this.toastr.error('Something unexpected went wrong');
+              console.log(error);
               break;
           }
         }
         return throwError(error);
       })
-    )
+    );
   }
 }
