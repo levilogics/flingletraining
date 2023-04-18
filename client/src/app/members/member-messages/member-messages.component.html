@@ -8,16 +8,16 @@
       #scrollMe
       *ngIf="(messageService.messageThread$ | async).length > 0"
       [scrollTop]="scrollMe.scrollHeight"
-      class="chat"
       style="overflow: scroll; height: 500px"
+      class="chat"
     >
       <li *ngFor="let message of messageService.messageThread$ | async">
         <div>
           <span class="chat-img float-right">
             <img
-              alt="{{ message.senderUsername }}"
               class="rounded-circle"
               src="{{ message.senderPhotoUrl || './assets/user.png' }}"
+              alt="{{ message.senderUsername }}"
             />
           </span>
           <div class="chat-body">
@@ -27,18 +27,18 @@
                   message.messageSent | timeago
                   }}</span>
                 <span
+                  class="text-danger"
                   *ngIf="
                     !message.dateRead && message.senderUsername !== username
                   "
-                  class="text-danger"
                 >
                   (unread)
                 </span>
                 <span
+                  class="text-success"
                   *ngIf="
                     message.dateRead && message.senderUsername !== username
                   "
-                  class="text-success"
                 >
                   (read {{ message.dateRead | timeago }})
                 </span>
@@ -55,12 +55,12 @@
     <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
       <div class="input-group">
         <input
-          [(ngModel)]="messageContent"
-          class="form-control input-sm"
           name="messageContent"
-          placeholder="Send a private message"
           required
+          [(ngModel)]="messageContent"
           type="text"
+          class="form-control input-sm"
+          placeholder="Send a private message"
         />
         <div class="input-group-append">
           <button

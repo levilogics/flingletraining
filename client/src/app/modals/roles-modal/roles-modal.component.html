@@ -2,8 +2,8 @@
   <h4 class="modal-title pull-left">Edit roles for {{ user.username }}</h4>
   <button
     (click)="bsModalRef.hide()"
-    aria-label="Close"
     class="close pull-right"
+    aria-label="Close"
     type="button"
   >
     <span aria-hidden="true">&times;</span>
@@ -14,11 +14,11 @@
     <div *ngFor="let role of roles" class="form-check">
       <input
         (change)="role.checked = !role.checked"
-        [checked]="role.checked"
-        [disabled]="role.name === 'Admin' && user.username === 'admin'"
         class="form-check-input"
+        [checked]="role.checked"
         type="checkbox"
         value="role.name"
+        [disabled]="role.name === 'Admin' && user.username === 'admin'"
       />
       <label>{{ role.name }}</label>
     </div>
