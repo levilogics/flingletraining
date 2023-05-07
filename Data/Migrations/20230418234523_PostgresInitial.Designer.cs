@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace API.Data.Migrations
+namespace Flingletraining.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221012033510_PostgreInitial")]
-    partial class PostgreInitial
+    [Migration("20230418234523_PostgresInitial")]
+    partial class PostgresInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
