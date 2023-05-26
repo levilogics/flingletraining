@@ -30,4 +30,8 @@
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Remove="global 2.json"/>
+    </ItemGroup>
+
 </Project>
